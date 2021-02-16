@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signIn } from "../redux/user-action-creators";
+import { signIn } from "../redux/actions/user-action-creators";
 
 const Signin = () => {
   const dispatch = useDispatch();

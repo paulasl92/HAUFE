@@ -10,7 +10,7 @@ import {
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
-} from "./action-types";
+} from "../action-types";
 
 export const isValidToken = (token) => {
   let decoded = jwt.decode(token);

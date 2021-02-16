@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, compose } from "redux";
 import thunk from "redux-thunk";
 import { combineReducers } from "redux";
 
-import authentication from "./reducerUser";
+import authentication from "./reducers/reducerUser";
 
 const createRootReducer = () =>
   combineReducers({
@@ -35,8 +35,8 @@ export default function makeStore(initialState = initState) {
   );
 
   if ((module as any).hot) {
-    (module as any).hot.accept("./reducerUser", () => {
-      const nextReducer = require("./reducerUser").default;
+    (module as any).hot.accept("./reducers/reducerUser", () => {
+      const nextReducer = require("./reducers/reducerUser").default;
       store.replaceReducer(nextReducer);
     });
   }

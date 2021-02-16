@@ -1,7 +1,7 @@
 import {User_SIGN_UP_FAILURE, User_SIGN_UP_REQUEST, User_SIGN_UP_SUCCESS,
-  User_SIGN_IN_FAILURE, User_SIGN_IN_REQUEST} from '../models/user';
+  User_SIGN_IN_FAILURE, User_SIGN_IN_REQUEST} from '../../models/user';
 
-import {signUpService, signInService, signOutService} from "../services/user-service"
+import {signUpService, signInService, signOutService} from "../../services/user-service"
 
 import {
   SIGN_IN_FAILURE,
@@ -13,7 +13,7 @@ import {
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
-} from "./action-types";
+} from "../action-types";
 
 //Sign up action creators
 const signUpRequest = () => {

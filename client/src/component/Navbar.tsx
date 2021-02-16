@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signOut } from "../redux/user-action-creators";
+import { signOut } from "../redux/actions/user-action-creators";
 
 const NavBar = () => {
   const dispatch = useDispatch();
