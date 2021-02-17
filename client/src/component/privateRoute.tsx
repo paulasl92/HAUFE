@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -7,13 +6,11 @@ export const UserRoute = ({
   path,
   ...rest
 }) => {
-  const { currentUser, } = useSelector(
-    (state) => state.authentication
-  );
-
+  const { currentUser } = useSelector( (state) => { 
+    return state.authentication; });
   return currentUser !== null ? (
     <Route exact path={path} component={component} {...rest} />
   ) : (
-      <Redirect to={"/"} />
+      <Redirect to={"/signin"} />
     );
 };

@@ -79,7 +79,7 @@ export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
       const { token } = response.data;
       localStorage.setItem("USER-TOKEN", token);
       dispatch(signInSuccess(token));
-      history.push("/home");
+      history.push("/");
     }
     catch(error) {
       dispatch(signInFailure(error.toString()));
@@ -110,7 +110,7 @@ export const signOut = function (history : any) {
   return async function (dispatch : any) {
     dispatch(signOutRequest());
     const response = await signOutService();
-    history.push("/signin");
+    history.push("/");
     if (localStorage.getItem("USER_TOKEN")) {
       dispatch(signOutFailure());
     } else {

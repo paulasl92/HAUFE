@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from "redux";
 import thunk from "redux-thunk";
 import { combineReducers } from "redux";
-
+import jwt from "jsonwebtoken";
 import authentication from "./reducers/reducerUser";
 
 const createRootReducer = () =>
@@ -9,10 +9,19 @@ const createRootReducer = () =>
     authentication,
   });
 
+  export const isValidToken = (token) => {
+    let decoded = jwt.decode(token);
+    return new Date(decoded.exp * 1000) > new Date() ? decoded : null;
+  };
+
 const initState = {
   authentication: {
-    currentUser: null,
-    token: "",
+    currentUser: localStorage.getItem("USER-TOKEN")
+    ? isValidToken(localStorage.getItem("USER-TOKEN"))
+    : null,
+  token: localStorage.getItem("USER-TOKEN")
+    ? localStorage.getItem("USER-TOKEN")
+    : null,
     error: "",
     loading: false,
     isAuthenticated: false,
