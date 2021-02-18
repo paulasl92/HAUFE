@@ -2,6 +2,7 @@ import {
     FETCH_CHARACTERS_ERROR,
     FETCH_CHARACTERS_PENDING,
     FETCH_CHARACTERS_SUCCESS,
+    UPDATE_CURRENT_PAGE
   } from "../action-types";
   
 
@@ -19,9 +20,19 @@ export function fetchCharactersPending() {
 }
 
 export function fetchCharactersSuccess(characters) {
+    var pagesCount = characters.data.data.info.pages;
     var information = characters.data.data.results;
     return {
         type: FETCH_CHARACTERS_SUCCESS,
-        characters: information
+        characters: information,
+        pages: pagesCount
+    }
+}
+
+
+export function updateCurrentPage(currentPage) {
+    return {
+        type: UPDATE_CURRENT_PAGE,
+        currentPage: currentPage
     }
 }

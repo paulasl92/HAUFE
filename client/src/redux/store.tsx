@@ -31,7 +31,9 @@ const initState = {
   charactersReducer : {
     pending: false,
     characters: [],
-    error: null
+    error: null,
+    pages: 1,
+    currentPage: 0
   }
 }
 
