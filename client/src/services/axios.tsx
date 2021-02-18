@@ -21,3 +21,11 @@ export const postRequest = (data, url) =>{
             data: data
         })
 }
+
+export const getRequest = (url) =>{
+    return axios({
+           baseURL: apiBase,  
+           method: "get",
+           url: url
+       })
+}

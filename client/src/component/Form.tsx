@@ -2,7 +2,7 @@ import  { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signIn , signUp} from "../redux/actions/user-action-creators";
+import { signIn , signUp} from "../redux/actions/user-action";
 
 const Form = ( {formInformation : formInformation}) => {
     const dispatch = useDispatch();

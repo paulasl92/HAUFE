@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import { combineReducers } from "redux";
 import jwt from "jsonwebtoken";
 import authentication from "./reducers/reducerUser";
+import charactersReducer from "./reducers/reducerCharacters";
 
 const createRootReducer = () =>
   combineReducers({
     authentication,
+    charactersReducer
   });
 
   export const isValidToken = (token) => {
@@ -19,13 +21,18 @@ const initState = {
     currentUser: localStorage.getItem("USER-TOKEN")
     ? isValidToken(localStorage.getItem("USER-TOKEN"))
     : null,
-  token: localStorage.getItem("USER-TOKEN")
+    token: localStorage.getItem("USER-TOKEN")
     ? localStorage.getItem("USER-TOKEN")
     : null,
     error: "",
     loading: false,
     isAuthenticated: false,
   },
+  charactersReducer : {
+    pending: false,
+    characters: [],
+    error: null
+  }
 }
 
 export default function makeStore(initialState = initState) {
@@ -42,12 +49,5 @@ export default function makeStore(initialState = initState) {
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
-
-  if ((module as any).hot) {
-    (module as any).hot.accept("./reducers/reducerUser", () => {
-      const nextReducer = require("./reducers/reducerUser").default;
-      store.replaceReducer(nextReducer);
-    });
-  }
   return store;
 }
