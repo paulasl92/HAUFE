@@ -5,7 +5,7 @@ var getSignedToken = require('../util/signedToken');
 async function createUser(payload) {
   return User.find({ email: payload.email })
     .exec()
-    .then((user) => {
+    .then((user ) => {
       if (user.length > 0) {
         throw new Error("User already exist");
       }

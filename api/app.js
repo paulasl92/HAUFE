@@ -14,6 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var key = require('./keys');
 var authRouter = require('./routes/auth');
+var rAndM = require('./routes/rickAndMorty');
 
 var createError = require('http-errors');
 var express = require('express');
@@ -38,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(express.json());
 app.use("/", authRouter);
-
+app.use("/rickAndMorty/", rAndM);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
