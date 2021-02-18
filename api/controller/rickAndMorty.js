@@ -21,4 +21,24 @@ const getCharacterById = async (req, res) => {
   }
 };
 
-module.exports = { getCharacterById };
+/**
+ * You can access different pages with the page parameter. If you don't specify any page, the first page will be shown.
+ */
+const getCharacters = async (req, res) => {
+  const page = req.params.id;
+  try {
+    const characters  = await RandMServices.getRequestById(page, "/character/?page=");
+    res.status(200).json({
+      success: true,
+      data: characters.data,
+    });
+  } catch (err) {
+    res.status(406).json({
+        success: false,
+        error: err.toString()
+      });
+  }
+};
+
+
+module.exports = { getCharacterById, getCharacters };

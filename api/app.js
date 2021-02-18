@@ -1,5 +1,6 @@
 const { connect } = require("./db/mongoose");
 connect();
+
 var authRouter = require('./routes/auth');
 var rAndM = require('./routes/rickAndMorty');
 
