@@ -9,7 +9,7 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS,
+  SIGN_OUT_SUCCESS
 } from "../action-types";
 
 export const isValidToken = (token) => {
@@ -23,7 +23,6 @@ const initState = {
   token: localStorage.getItem("USER-TOKEN")
     ? localStorage.getItem("USER-TOKEN")
     : null,
-  error: "",
   loading: false,
   isAuthenticated: false,
 };
@@ -44,7 +43,6 @@ const authenticationReducer = function (state = initState, action) {
       return {
         ...state,
         loading: false,
-        error: action.payload,
         currentUser: null,
         isAuthenticated: false,
       };

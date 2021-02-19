@@ -24,7 +24,6 @@ const initState = {
     token: localStorage.getItem("USER-TOKEN")
     ? localStorage.getItem("USER-TOKEN")
     : null,
-    error: "",
     loading: false,
     isAuthenticated: false,
   },

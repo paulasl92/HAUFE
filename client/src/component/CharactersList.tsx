@@ -34,7 +34,7 @@ const CharactersList = ( {characters : characters}) => {
   return (
       <div style={{ display: 'grid', gridTemplateColumns: `repeat( ${gridFrames()}, 1fr)`, gridGap: '10px', gridAutoRows: 'minMax(100px, auto)'}}>
         {characters.map( c => {
-         return <div className="characterCard">
+         return <div className="characterCard"  key={c.id}>
             <CharacterModal show={show === c.id} handleClose={handleModalOff}>
               {modalInformation(c)}
             </CharacterModal>

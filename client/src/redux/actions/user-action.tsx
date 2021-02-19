@@ -12,7 +12,7 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS,
+  SIGN_OUT_SUCCESS
 } from "../action-types";
 
 //Sign up action creators
@@ -46,10 +46,10 @@ export const signUp = (user : User_SIGN_UP_REQUEST, history : any ) => {
         dispatch(signUpSuccess(data));
         history.push("/");
       } else {
-        dispatch(signUpFailure(data.error));
+        return data.error;
       }
     } catch (error){
-      dispatch(signUpFailure(error.toString()));
+      return error.toString();
     }
   };
 };
@@ -87,11 +87,13 @@ export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
         dispatch(signInSuccess(token));
         history.push("/");
       }else{
-        dispatch(signInFailure(data.error));
+        //dispatch(signInFailure(data.error));
+        return data.error;
       }
     }
     catch(error) {
-      dispatch(signInFailure(error.toString()));
+      //dispatch(signInFailure(error.toString()));
+      return error.toString();
     }
   };
 };
@@ -127,3 +129,4 @@ export const signOut = function (history : any) {
     }
   };
 };
+

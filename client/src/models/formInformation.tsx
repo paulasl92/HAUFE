@@ -4,4 +4,5 @@ export interface formInformation{
     link: string,
     linkText: string,
     buttonRedirect: string,
+    handleClick: (email, password) => void
 }

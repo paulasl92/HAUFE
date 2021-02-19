@@ -1,14 +1,8 @@
 import  { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import '../util/styles/form.scss';
-import { signIn , signUp} from "../redux/actions/user-action";
-
+import {passValidation, emailValidation} from '../validation/validation';
 const Form = ( {formInformation : formInformation}) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { error } = useSelector((state) => state.authentication);
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,55 +11,25 @@ const Form = ( {formInformation : formInformation}) => {
 
   const handleEmailChange =  (event) => {
     setEmail(event.target.value);
-    emailValidation(event.target.value);
+    setEmailError(emailValidation(event.target.value));
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    passValidation(event.target.value);
+    setPasswordError(passValidation(event.target.value));
   };
 
-  const handleSignUpClick = (event) => {
-    event.preventDefault();
-    dispatch(signUp({ email, password }, history));
-  };
-
-  const handleSignInClick = (event) => {
-    event.preventDefault();
-    dispatch(signIn({ email, password }, history));
-  };
-
-  const passValidation = (password) => {
-    if (password.trim() === '') {
-       setPasswordError('Password is required');
-      return false;
-    }
-    if (password.trim().length < 6) {
-      setPasswordError ('Password needs to be at least six characters');
-      return false;
-    }
-    setPasswordError ('');
-    return true;
-  };
   
-  const emailValidation = (email) => {
-    if ( /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email,)) {
-      setEmailError('');
-      return true;
-    }
-    if (email.trim() === '') {
-      setEmailError('Email is required');
-    }
-    setEmailError('Please enter a valid email');
-    return false;
+  const handleClick = function(event) {
+    event.preventDefault();
+    formInformation.handleClick(email, password)
   };
 
   return (
     <div>
     <div>   
-     {error !== null ? <div className="errorStatus">{error}</div> : null}
-     {emailError !== null ? <div className="error">{emailError}</div> : null} 
-     {passwordError !== null ? <div className="error">{passwordError}</div> : null}   
+     {emailError !== '' ? <div className="error">{emailError}</div> : null} 
+     {passwordError !== '' ? <div className="error">{passwordError}</div> : null}   
     </div>
     <div className="form">
         <div className="login login__form">
@@ -90,7 +54,7 @@ const Form = ( {formInformation : formInformation}) => {
               <button
                 disabled={ passwordError != emailError }
                 className="btn btn__login"
-                onClick={ formInformation.buttonEvent == "UP" ? handleSignUpClick : handleSignInClick }
+                onClick={ (e) => handleClick(e) }
               >
                 {formInformation.buttonText}
               </button>
