@@ -49,6 +49,14 @@ class Pagination extends Component<any, any>{
             <div className="content">
             {error && <span>{error}</span>}    
             <h1>Charactes List</h1>
+            <ReactPaginate
+                forcePage = {currentPage}
+                marginPagesDisplayed = "2"
+                pageRangeDisplayed = "10"
+                pageCount={pages}
+                onPageChange={this.handlePageClick.bind(this)}
+                containerClassName={"pagination"}
+            />
             <CharactersList characters={characters} />
             <ReactPaginate
                 forcePage = {currentPage}
