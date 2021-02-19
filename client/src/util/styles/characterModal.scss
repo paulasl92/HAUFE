@@ -10,8 +10,8 @@
   .modal-main {
     position:fixed;
     background: white;
-    width: 80%;
-    height: auto;
+    width: 50%;
+    height: 50%;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
@@ -23,4 +23,13 @@
   
   .display-none {
     display: none;
+  }
+
+  .modal-closeButton{
+    float: right;
+    margin: 5px;
+  }
+
+  .modal-Information{
+    padding: 10px;
   }

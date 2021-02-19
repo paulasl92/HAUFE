@@ -35,15 +35,13 @@ const NavBar = () => {
   }
 
   return (
-    <nav>
-      <div className="">
-        <div className="">
-          <ul id="nav-mobile" className="">
-            {Greeting()}
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div className='content'>
+      <nav id="navigation-bar"> 
+            <ul>
+              {Greeting()}
+            </ul>
+      </nav>
+    </div>
   );
 };
 

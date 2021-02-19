@@ -3,4 +3,5 @@ export interface formInformation{
     buttonEvent: string,
     link: string,
     linkText: string,
+    buttonRedirect: string,
 }

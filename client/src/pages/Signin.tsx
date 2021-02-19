@@ -7,11 +7,14 @@ const Signin = () => {
     buttonText: "Login",
     buttonEvent: "IN",
     link: "/signup",
-    linkText: "Don't have an account?"
+    linkText: "Don't have an account?",
+    buttonRedirect: "Register!"
   }
 
   return (
-    <Form formInformation={singUpForm} />
+    <div className="">
+      <Form formInformation={singUpForm} />
+    </div>
   );
 };
 

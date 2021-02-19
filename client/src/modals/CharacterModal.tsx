@@ -6,10 +6,10 @@ const CharacterModal = ({ handleClose, show, children}) => {
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        {children}
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
+        <button className="modal-closeButton" type="button" onClick={handleClose}>X</button>
+        <div className="modal-Information">
+          {children}
+        </div>
       </section>
     </div>
   );

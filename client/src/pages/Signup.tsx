@@ -6,10 +6,11 @@ const Signup = () => {
   
 
   const singUpForm : formInformation  = {
-    buttonText: "SignUP",
+    buttonText: "Sign UP",
     buttonEvent: "UP",
     link: "/signin",
-    linkText: "Already have an account?"
+    linkText: "Already have an account?",
+    buttonRedirect: "Log In!"
   }
 
 
