@@ -46,8 +46,9 @@ class Pagination extends Component<any, any>{
           />
          
         return (
-            <div>
+            <div className="content">
             {error && <span>{error}</span>}    
+            <h1>Charactes List</h1>
             <CharactersList characters={characters} />
             <ReactPaginate
                 forcePage = {currentPage}

@@ -16,7 +16,10 @@ const NavBar = () => {
   };
 
   function UserGreeting() {
-    return <li onClick={handleSignOut}><Link to="/">Sign out</Link></li>;
+    return <>
+        <li><Link to="/">Go Home</Link></li>
+        <li onClick={handleSignOut}><Link to="/">Sign out</Link></li>
+      </>
   }
   
   function GuestGreeting() {
