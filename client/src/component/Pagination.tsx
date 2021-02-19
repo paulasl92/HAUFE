@@ -9,6 +9,8 @@ import fetchCharactersAction from '../services/rickAndMorty-service';
 import {getCharactersError, getCharacters, getCharactersPending, getPagesCount, getCurrentPage} from '../redux/reducers/reducerCharacters';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
+import '../util/styles/pagination.scss';
+
 import Loader from 'react-loader-spinner';
 
 class Pagination extends Component<any, any>{
