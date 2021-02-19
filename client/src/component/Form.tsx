@@ -5,19 +5,25 @@ import '../util/styles/form.scss';
 import { signIn , signUp} from "../redux/actions/user-action";
 
 const Form = ( {formInformation : formInformation}) => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const { error } = useSelector((state) => state.authentication);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { error } = useSelector((state) => state.authentication);
   
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const handleEmailChange = (event) => {
-      setEmail(event.target.value);
-    };
-    const handlePasswordChange = (event) => {
-      setPassword(event.target.value);
-    };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("Please enter the email");
+  const [passwordError, setPasswordError] = useState("Password needs to be at least six characters");
+
+  const handleEmailChange =  (event) => {
+    setEmail(event.target.value);
+    emailValidation(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    passValidation(event.target.value);
+  };
 
   const handleSignUpClick = (event) => {
     event.preventDefault();
@@ -29,9 +35,39 @@ const Form = ( {formInformation : formInformation}) => {
     dispatch(signIn({ email, password }, history));
   };
 
-  return (
-    <div className="form">
+  const passValidation = (password) => {
+    if (password.trim() === '') {
+       setPasswordError('Password is required');
+      return false;
+    }
+    if (password.trim().length < 6) {
+      setPasswordError ('Password needs to be at least six characters');
+      return false;
+    }
+    setPasswordError ('');
+    return true;
+  };
+  
+  const emailValidation = (email) => {
+    if ( /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email,)) {
+      setEmailError('');
+      return true;
+    }
+    if (email.trim() === '') {
+      setEmailError('Email is required');
+    }
+    setEmailError('Please enter a valid email');
+    return false;
+  };
 
+  return (
+    <div>
+    <div>   
+     {error !== null ? <div className="errorStatus">{error}</div> : null}
+     {emailError !== null ? <div className="error">{emailError}</div> : null} 
+     {passwordError !== null ? <div className="error">{passwordError}</div> : null}   
+    </div>
+    <div className="form">
         <div className="login login__form">
           <div className="container cont__login">
               <input
@@ -40,6 +76,8 @@ const Form = ( {formInformation : formInformation}) => {
                 placeholder="email"
                 value={email}
                 onChange={handleEmailChange}
+                name="email"
+                required
               />
               <input
                 className="password input" 
@@ -47,9 +85,10 @@ const Form = ( {formInformation : formInformation}) => {
                 placeholder="password"
                 value={password}
                 onChange={handlePasswordChange}
+                required
               />
-              {error !== null ? <div className="error">{error}</div> : null}
               <button
+                disabled={ passwordError != emailError }
                 className="btn btn__login"
                 onClick={ formInformation.buttonEvent == "UP" ? handleSignUpClick : handleSignInClick }
               >
@@ -60,10 +99,11 @@ const Form = ( {formInformation : formInformation}) => {
 
         <div className="cta">
           <h2 className="cta__heading">{formInformation.linkText}</h2>
-          <div className="btn cta__btn">
-            <Link to={formInformation.link}><span className="cta__btn--text">{formInformation.buttonRedirect}</span></Link>
+          <div>
+            <Link to={formInformation.link}><span className="btn cta__btn cta__btn--text">{formInformation.buttonRedirect}</span></Link>
           </div>
         </div>
+    </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { basic_character_information } from "../../models/character";
 import {
     FETCH_CHARACTERS_ERROR,
     FETCH_CHARACTERS_PENDING,
@@ -21,7 +22,7 @@ export function fetchCharactersPending() {
 
 export function fetchCharactersSuccess(characters) {
     var pagesCount = characters.data.data.info.pages;
-    var information = characters.data.data.results;
+    var information : basic_character_information  = characters.data.data.results;
     return {
         type: FETCH_CHARACTERS_SUCCESS,
         characters: information,

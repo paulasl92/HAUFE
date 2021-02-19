@@ -41,9 +41,13 @@ export const signUp = (user : User_SIGN_UP_REQUEST, history : any ) => {
     dispatch(signUpRequest());
     try {
       const response = await signUpService(user);
-      const { data } = response.data;
-      dispatch(signUpSuccess(data));
-      history.push("/");
+      const  data  = response.data;
+      if (data.success){
+        dispatch(signUpSuccess(data));
+        history.push("/");
+      } else {
+        dispatch(signUpFailure(data.error));
+      }
     } catch (error){
       dispatch(signUpFailure(error.toString()));
     }
@@ -76,10 +80,15 @@ export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
     dispatch(signInRequest);
     try{
       const response = await signInService(payload);
-      const { token } = response.data;
-      localStorage.setItem("USER-TOKEN", token);
-      dispatch(signInSuccess(token));
-      history.push("/");
+      const data  = response.data;
+      if (data.success){
+        const token  = data.token;
+        localStorage.setItem("USER-TOKEN", token);
+        dispatch(signInSuccess(token));
+        history.push("/");
+      }else{
+        dispatch(signInFailure(data.error));
+      }
     }
     catch(error) {
       dispatch(signInFailure(error.toString()));

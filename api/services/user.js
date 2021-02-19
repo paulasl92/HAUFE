@@ -29,7 +29,7 @@ function signInUser(payload) {
     .exec()
     .then((user) => {
       if (!user) {
-        throw new Error("Please enter email or password");
+        throw new Error("The email does not exists");
       } else {
         return bcrypt
           .compare(payload.password, user.password)
@@ -42,7 +42,7 @@ function signInUser(payload) {
             }
           })
           .catch((err) => {
-            throw new Error("All field required");
+            throw new Error("Incorrect password or email, try again");
           });
       }
     });

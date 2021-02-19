@@ -9,7 +9,7 @@ const signUp = async (req, res, next) => {
       data: savedUser,
     });
   } catch (err) {
-    res.status(409).json({
+    res.status(200).json({
         success: false,
         error: err.toString()
       });
@@ -24,7 +24,7 @@ const signUp = async (req, res, next) => {
       token: token,
     });
   } catch (err) {
-    res.status(409).json({
+    res.status(200).json({
         success: false,
         error: err.toString()
       });

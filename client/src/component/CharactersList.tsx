@@ -38,7 +38,7 @@ const CharactersList = ( {characters : characters}) => {
             <CharacterModal show={show === c.id} handleClose={handleModalOff}>
               {modalInformation(c)}
             </CharacterModal>
-
+          
             <CharactersDetails {...c} />
             <button type="button" onClick={() =>handleModalOn(c.id)}>Details</button>
           </div>
