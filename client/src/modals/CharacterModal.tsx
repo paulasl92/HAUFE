@@ -1,19 +1,27 @@
+import { Component } from 'react';
 import '../util/styles/characterModal.scss';
 
-const CharacterModal = ({ handleClose, show, children}) => {
+class CharacterModal extends Component<any, any> {
 
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
-  return (
-    <div className={showHideClassName}>
+  constructor(props) {
+    super(props);
+    
+  }
+
+  render() {
+      if(!this.props.show){
+          return null;
+      }
+  
+    return <div className="modal display-block">
       <section className="modal-main">
-        <button className="modal-closeButton" type="button" onClick={handleClose}>X</button>
+        <button className="modal-closeButton" type="button" onClick={this.props.handleClose}>X</button>
         <div className="modal-Information">
-          {children}
+          {this.props.children}
         </div>
       </section>
-    </div>
-  );
-};
-
+      </div>;
+  }
+}
 
 export default CharacterModal;
