@@ -29,38 +29,5 @@
 }
 
 .btnModal{
-
-    display: inline-block;
-    border: none;
-    margin: 20px 0;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 4px 15px;
-    border: 1px solid white;
     background-color: gray;
-    color: white;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    left: 50%;
-    top: 60%;
-  
-  &:focus{
-    outline: none;
-  }
-  
-  &:hover{
-        border-radius: 0;
-        box-shadow: 0 2px 3px rgba(0,0,0,0.4);
-        padding: 3px 15px;
-
-      }
-      
-      &:active{
-        box-shadow: 0 1px 1px rgba(0,0,0,0.4);
-      }
-}
-
-.btnModal:hover{
-  background-color:rgba(0,0,0,0.4);
-  border-radius: 0;
 }

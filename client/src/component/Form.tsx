@@ -64,7 +64,7 @@ const Form = ( {formInformation : formInformation}) => {
         <div className="cta">
           <h2 className="cta__heading">{formInformation.linkText}</h2>
           <div>
-            <Link to={formInformation.link}><span className="btn cta__btn cta__btn--text">{formInformation.buttonRedirect}</span></Link>
+            <Link to={formInformation.link}><span className="btn__general btn cta__btn cta__btn--text">{formInformation.buttonRedirect}</span></Link>
           </div>
         </div>
     </div>

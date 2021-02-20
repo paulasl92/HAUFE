@@ -41,7 +41,7 @@ const CharactersList = ( {characters : characters}) => {
               {modalInformation(c)}
             </CharacterModal>
             <CharactersDetails {...c} />
-            <button type="button" className="btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
+            <button type="button" className="btn__general btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
           </div>
         })}
       </div>
