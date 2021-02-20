@@ -10,6 +10,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
   },
+  fav: {
+    type: []
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);

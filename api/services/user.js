@@ -35,8 +35,11 @@ function signInUser(payload) {
           .compare(payload.password, user.password)
           .then((res) => {
             if (res) {
-              const token = getSignedToken(user._id);
-              return token;
+              const information = {
+                token:  getSignedToken(user._id),
+                email: payload.email
+              } 
+              return information;
             } else {
               throw new Error("Incorrect password or email, try again");
             }
@@ -47,4 +50,36 @@ function signInUser(payload) {
       }
     });
 }
-module.exports = { createUser, signInUser };
+
+function favUSerCharacters(email,body) {
+  return User.findOne({ email: email }).exec()
+  .then((user)  => {
+    if (!user) {
+      throw new Error("The email does not exists");
+    } else {
+     return User.findByIdAndUpdate( user._id,body, { new: true } , (error,info) => {  
+      if(error){
+        throw new Error("Cant not update");
+      } else { 
+        return {
+          fav: info.fav
+        }
+      }
+    })
+    };
+  });
+}
+
+function getUserCharacters(email) {
+  return User.findOne({ email: email }).exec()
+  .then((user)  => {
+    if (!user) {
+      throw new Error("The email does not exists");
+    } else {
+     return user.fav
+    }
+  });
+}
+
+
+module.exports = { createUser, signInUser, favUSerCharacters,getUserCharacters };

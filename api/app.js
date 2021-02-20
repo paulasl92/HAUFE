@@ -3,7 +3,7 @@ connect();
 
 var authRouter = require('./routes/auth');
 var rAndM = require('./routes/rickAndMorty');
-
+var fav = require('./routes/fav');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -28,6 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/", authRouter);
 app.use("/rickAndMorty/", rAndM);
+app.use("/fav/", fav);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
