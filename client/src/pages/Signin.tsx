@@ -4,6 +4,7 @@ import { formInformation } from "../models/formInformation";
 import { signIn} from "../redux/actions/user-action";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import '../util/styles/form.scss';
 
 const Signin = () => {
   const [error, setError] = useState("");
@@ -22,9 +23,11 @@ const Signin = () => {
   }
 
   return (
-    <div className="">
-      <h1>Log In!!</h1>
-      {error !== null ? <div className="errorStatus">{error}</div> : null}
+    <div>
+      <div className="errorContainer">
+        <h1>Log In!!</h1>
+        {error !== null ? <div className="errorStatus">{error}</div> : null}
+      </div>
       <Form formInformation={singUpForm} />
     </div>
   );

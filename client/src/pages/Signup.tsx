@@ -25,8 +25,10 @@ const Signup = () => {
 
   return (
     <div>
-      <h1>Register!!</h1>
-      {error !== null ? <div className="errorStatus">{error}</div> : null}
+      <div className="errorContainer">
+        <h1>Register!!</h1>
+        {error !== null ? <div className="errorStatus">{error}</div> : null}
+      </div>
       <Form formInformation={singUpForm} />
     </div>
   );

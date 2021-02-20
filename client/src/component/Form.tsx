@@ -27,7 +27,7 @@ const Form = ( {formInformation : formInformation}) => {
 
   return (
     <div>
-    <div>   
+    <div className="errorContainer">   
      {emailError !== '' ? <div className="error">{emailError}</div> : null} 
      {passwordError !== '' ? <div className="error">{passwordError}</div> : null}   
     </div>
