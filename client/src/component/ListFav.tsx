@@ -5,7 +5,6 @@ import { updateUserFavsAction } from "../redux/actions/fav-action";
 
 const ListFav = ( {listCharacters : listCharacters , favList: favList} ) => {
     const dispatch = useDispatch();
-
     const removeToFavs = async (id : number) => {
         var ids:number[] = [];
         if ( favList && favList.length != 0) ids=favList;
@@ -16,11 +15,15 @@ const ListFav = ( {listCharacters : listCharacters , favList: favList} ) => {
           window.location.reload();
         }
       };
+
+      const gridFrames = () => {
+       return  (favList && favList.length <2 ) ? 1 : 2;
+      };
  
     return (
         <div className="favoriteList" >
           <h1>My list of favorite characters</h1>
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat( 2, 1fr)`, gridGap: '10px', gridAutoRows: 'minMax(100px, auto)'}}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat( ${gridFrames()}, 1fr)`, gridGap: '10px', gridAutoRows: 'minMax(100px, auto)'}}>
             {listCharacters.map( c => {
             return <div className="listContainer" key={c.id}>
                 <div className="imageList">
