@@ -1,6 +1,6 @@
+require("./.env");
 const { connect } = require("./db/mongoose");
 connect();
-require("./.env");
 var authRouter = require('./routes/auth');
 var rAndM = require('./routes/rickAndMorty');
 var fav = require('./routes/fav');
