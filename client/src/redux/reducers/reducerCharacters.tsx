@@ -58,3 +58,4 @@ export const getPagesCount = (state) =>{
 export const getCurrentPage = (state) =>{
     return state.charactersReducer.currentPage;
 }
+

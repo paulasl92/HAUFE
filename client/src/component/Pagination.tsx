@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import fetchCharactersAction from '../services/rickAndMorty-service';
+import fetchCharactersAction, {loadFavsAction} from '../services/rickAndMorty-service';
 import {getCharactersError, getCharacters, getCharactersPending, getPagesCount, getCurrentPage} from '../redux/reducers/reducerCharacters';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -20,8 +20,9 @@ class Pagination extends Component<any, any>{
     }
   
     componentDidMount() {
-          const {fetchCharacters, currentPage} = this.props;
+          const {fetchCharacters, currentPage, loadFavs} = this.props;
           fetchCharacters(currentPage);
+          loadFavs();
     }
 
     shouldComponentRender() {
@@ -32,7 +33,7 @@ class Pagination extends Component<any, any>{
   
     handlePageClick({ selected: selectedPage }) {
         const {fetchCharacters,currentPage} = this.props;
-        fetchCharacters((selectedPage))
+        fetchCharacters((selectedPage));
     }
 
     render() {
@@ -81,7 +82,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCharacters: fetchCharactersAction
+  fetchCharacters: fetchCharactersAction,
+  loadFavs: loadFavsAction
 }, dispatch)
 
 export default connect(

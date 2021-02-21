@@ -11,8 +11,8 @@ const NavBar = () => {
     return state.authentication
   });
 
-  const handleSignOut = () => {
-    dispatch(signOut(history));
+  const handleSignOut = async () => {
+    await dispatch(signOut(history));
   };
 
   function UserGreeting() {

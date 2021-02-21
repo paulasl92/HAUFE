@@ -98,6 +98,6 @@ const authenticationReducer = function (state = initState, action) {
 
 export default authenticationReducer;
 
-export const getPagesCount = (state) =>{
-  return state.charactersReducer.pages;
+export const getUserFav = (state) =>{
+  return state.authentication.favs;
 }

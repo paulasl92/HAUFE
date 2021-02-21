@@ -2,12 +2,15 @@ import  { useState } from "react";
 import CharacterModal from "../modals/CharacterModal"
 import CharactersDetails from "./CharacterDetails";
 import '../util/styles/characterDetails.scss';
-import { updateUserFavsAction } from "../redux/actions/user-action";
-import { useDispatch } from "react-redux";
+import { updateUserFavsAction } from "../redux/actions/fav-action";
+import { useDispatch, useSelector } from "react-redux";
 
 const CharactersList = ( {characters : characters}) => {
   const [show, setShow] = useState(0);
   const dispatch = useDispatch();
+  const favList = useSelector(state => {
+    return state.authentication.favs;
+  })
 
   const gridFrames = () => {
     const { innerWidth: width } = window;
@@ -19,13 +22,31 @@ const CharactersList = ( {characters : characters}) => {
   };
 
   const addToFavs = async (id : number) => {
-    var ids:number[] = [id];
-    const res = await dispatch(updateUserFavsAction(ids));
+    var ids:number[] = [];
+    if ( favList && favList.length != 0) ids=favList;
+    ids.push(id);
+    await dispatch(updateUserFavsAction(ids));
   };
 
-  const removeToFavs = (id : number) => {
-
+  const removeToFavs = async (id : number) => {
+    var ids:number[] = [];
+    if ( favList && favList.length != 0) ids=favList;
+    const index = ids.indexOf(id);
+    if (index > -1) {
+      ids.splice(index, 1);
+      await dispatch(updateUserFavsAction(ids));
+    }
   };
+
+  const isInFavs = (id: number) => {
+    if ( favList && favList.length != 0){
+      const index = favList.indexOf(id);
+      if (index > -1) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   const handleModalOff = () => {
     setShow(0);
@@ -55,10 +76,9 @@ const CharactersList = ( {characters : characters}) => {
             </CharacterModal>
             <CharactersDetails {...c} />
             <button type="button" className="btn__general btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
-
-            <button type="button" className="btn__general btnModal" onClick={() =>addToFavs(c.id)}>Add to Favs</button>
-
-            <button type="button" className="btn__general btnModal" onClick={() =>removeToFavs(c.id)}>Remove to Favs</button>
+            <div className="favButtons">
+            {isInFavs(c.id) ? <button type="button" className="btn__general btnRemove" onClick={() =>removeToFavs(c.id)}>Remove to Favs</button> : <button type="button" className="btn__general btnAdd" onClick={() =>addToFavs(c.id)}>Add to Favs</button>}
+            </div>
 
           </div>
         })}
@@ -66,4 +86,4 @@ const CharactersList = ( {characters : characters}) => {
   );
 };
 
-export default CharactersList;
+export default (CharactersList);

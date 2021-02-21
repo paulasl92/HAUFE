@@ -21,7 +21,7 @@ const signUp = async (req, res) => {
     const information = await UserServices.signInUser(payload);
     res.status(200).json({
       success: true,
-      mail: information.email,
+      email: information.email,
       token: information.token
     });
   } catch (err) {

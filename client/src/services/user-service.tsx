@@ -1,4 +1,4 @@
-import {postRequest, postRequestToken, getRequestData} from "./axios";
+import {postRequest, postRequestToken} from "./axios";
 
 export const signUpService = (user) =>{
   return postRequest(user, "/signUp");
@@ -20,9 +20,9 @@ export const updateUserFavs = (favoriteList) =>{
   return postRequest(data,"/fav/updateCharacters")
 }
 
-export const getUSerFavs = () =>{
-  const email = {
-    email: localStorage.getItem("USER-EMAIL"),
+export const getUSerFavs = (e) =>{
+  const data = {
+    email: e,
   };
-  return getRequestData("/fav/getUserFav",email)
+  return postRequest(data,"/fav/getUserFav");
 }

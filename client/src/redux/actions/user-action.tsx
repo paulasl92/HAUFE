@@ -1,8 +1,8 @@
 import { User_SIGN_UP_REQUEST, User_SIGN_UP_SUCCESS,
    User_SIGN_IN_REQUEST} from '../../models/user';
 
-import {signUpService, signInService, signOutService, updateUserFavs} from "../../services/user-service";
-
+import {signUpService, signInService, signOutService, getUSerFavs} from "../../services/user-service";
+import { initUserFavsAction } from "./fav-action"
 import {
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
@@ -11,42 +11,7 @@ import {
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
-  UPDATE_USER_FAVS,
-  UPDATE_USER_FAVS_REQUEST
 } from "../action-types";
-
-
-const updateUserFavsRequest = () => {
-  return {
-    type: UPDATE_USER_FAVS_REQUEST,
-  };
-};
-
-const updateUserFavsSuccess = ( favs : number[]) => {
-  return {
-    type: UPDATE_USER_FAVS,
-    payload: {
-      favs
-    }
-  }
-}
-
-export const updateUserFavsAction = ( favs: number[] ) => {
-  return async function (dispatch : any) {
-    dispatch(updateUserFavsRequest());
-    try {
-      const response = await updateUserFavs(favs);
-      const  data  = response.data;
-      if (data.success){
-        dispatch(updateUserFavsSuccess(data.data));
-      } else {
-        return data.error;
-      }
-    } catch (error){
-      return error.toString();
-    }
-  };
-};
 
 //Sign up action creators
 const signUpRequest = () => {
@@ -65,12 +30,12 @@ const signUpSuccess = (user : User_SIGN_UP_SUCCESS) => {
 
 export const signUp = (user : User_SIGN_UP_REQUEST, history : any ) => {
   return async function (dispatch : any) {
-    dispatch(signUpRequest());
+    await dispatch(signUpRequest());
     try {
       const response = await signUpService(user);
       const  data  = response.data;
       if (data.success){
-        dispatch(signUpSuccess(data));
+        await dispatch(signUpSuccess(data));
         history.push("/");
       } else {
         return data.error;
@@ -99,7 +64,7 @@ const signInSuccess = (token : string, email: string) => {
 
 export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
   return async function (dispatch : any) {
-    const res = await dispatch(signInRequest);
+    await dispatch(signInRequest);
     try{
       const response = await signInService(payload);
       const data  = response.data;
@@ -108,7 +73,7 @@ export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
         const email = data.email;
         localStorage.setItem("USER-TOKEN", token);
         localStorage.setItem("USER-EMAIL", email);
-        const res = await dispatch(signInSuccess(token,email));
+        await dispatch(signInSuccess(token,email));
         history.push("/");
       }else{
         return data.error;
@@ -141,13 +106,13 @@ export const signOutFailure = function () {
 
 export const signOut = function (history : any) {
   return async function (dispatch : any) {
-    const res = await dispatch(signOutRequest());
-    const response = await signOutService();
+    await dispatch(signOutRequest());
+    await signOutService();
     history.push("/");
     if (localStorage.getItem("USER_TOKEN")) {
-      const res = await dispatch(signOutFailure());
+      await dispatch(signOutFailure());
     } else {
-      const res = await dispatch(signOutSuccess());
+      await dispatch(signOutSuccess());
     }
   };
 };
