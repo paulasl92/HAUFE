@@ -24,15 +24,9 @@ const Favs = () => {
           setIsLoading(false);
         }
       } catch (err) {
-
+        return err;
       }
   };
-
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-    };
-    fetchCurrentUser();
-  }, []);
 
   useEffect(() => {
     fetchFavoriteList();
