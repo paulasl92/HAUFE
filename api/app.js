@@ -1,6 +1,6 @@
 const { connect } = require("./db/mongoose");
 connect();
-
+require("./.env");
 var authRouter = require('./routes/auth');
 var rAndM = require('./routes/rickAndMorty');
 var fav = require('./routes/fav');
@@ -44,6 +44,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(9000, () => {
+  console.log('running')
 });
 
 module.exports = app;

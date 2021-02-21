@@ -1,6 +1,6 @@
 const axios = require("axios");
-var key = require('../keys')
-const BASE_API = key.RANDM_API;
+
+const BASE_API = RANDM_API;
 
 const getRequestById = async (id,url) => {
   try {
