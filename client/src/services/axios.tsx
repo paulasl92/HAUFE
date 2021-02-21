@@ -26,6 +26,15 @@ export const getRequest = (url) =>{
     return axios({
            baseURL: apiBase,  
            method: "get",
-           url: url
+           url: url,
+       })
+}
+
+export const getRequestData = (url,data) =>{
+    return axios({
+           baseURL: apiBase,  
+           method: "get",
+           url: url,
+           data: data
        })
 }

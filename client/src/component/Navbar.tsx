@@ -18,14 +18,15 @@ const NavBar = () => {
   function UserGreeting() {
     return <>
         <li><Link to="/">Go Home</Link></li>
+        <li><Link to="/favs">My Favs</Link></li>
         <li onClick={handleSignOut}><Link to="/">Sign out</Link></li>
       </>
   }
   
   function GuestGreeting() {
     return  <>
-          <li><Link to="/signin">SignIn</Link></li>
-          <li><Link to="/signup">SignUp</Link></li>
+          <li><Link to="/signin">Sign In</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
       </>
     ;
   }

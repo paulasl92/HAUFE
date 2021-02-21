@@ -19,11 +19,11 @@ class Pagination extends Component<any, any>{
         this.shouldComponentRender = this.shouldComponentRender.bind(this);
     }
   
-    componentWillMount() {
+    componentDidMount() {
           const {fetchCharacters, currentPage} = this.props;
           fetchCharacters(currentPage);
     }
-  
+
     shouldComponentRender() {
         const {pending} = this.props;
         if(pending === false) return false;
@@ -38,13 +38,14 @@ class Pagination extends Component<any, any>{
     render() {
         const {characters, error, pending, pages, currentPage} = this.props;
   
-        if( this.shouldComponentRender()) return <Loader
-            type="Puff"
-            color="#00BFFF"
+        if( this.shouldComponentRender()) return <div className="spinner">
+        <Loader
+            type="ThreeDots"
+            color="#333"
             height={100}
             width={100}
           />
-         
+         </div>
         return (
             <div className="content">
             {error && <span>{error}</span>}    

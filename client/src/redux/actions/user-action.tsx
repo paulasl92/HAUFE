@@ -1,19 +1,52 @@
-import {User_SIGN_UP_FAILURE, User_SIGN_UP_REQUEST, User_SIGN_UP_SUCCESS,
-  User_SIGN_IN_FAILURE, User_SIGN_IN_REQUEST} from '../../models/user';
+import { User_SIGN_UP_REQUEST, User_SIGN_UP_SUCCESS,
+   User_SIGN_IN_REQUEST} from '../../models/user';
 
-import {signUpService, signInService, signOutService} from "../../services/user-service"
+import {signUpService, signInService, signOutService, updateUserFavs} from "../../services/user-service";
 
 import {
-  SIGN_IN_FAILURE,
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
-  SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS
+  SIGN_OUT_SUCCESS,
+  UPDATE_USER_FAVS,
+  UPDATE_USER_FAVS_REQUEST
 } from "../action-types";
+
+
+const updateUserFavsRequest = () => {
+  return {
+    type: UPDATE_USER_FAVS_REQUEST,
+  };
+};
+
+const updateUserFavsSuccess = ( favs : number[]) => {
+  return {
+    type: UPDATE_USER_FAVS,
+    payload: {
+      favs
+    }
+  }
+}
+
+export const updateUserFavsAction = ( favs: number[] ) => {
+  return async function (dispatch : any) {
+    dispatch(updateUserFavsRequest());
+    try {
+      const response = await updateUserFavs(favs);
+      const  data  = response.data;
+      if (data.success){
+        dispatch(updateUserFavsSuccess(data.data));
+      } else {
+        return data.error;
+      }
+    } catch (error){
+      return error.toString();
+    }
+  };
+};
 
 //Sign up action creators
 const signUpRequest = () => {
@@ -27,12 +60,6 @@ const signUpSuccess = (user : User_SIGN_UP_SUCCESS) => {
     payload: {
       user,
     },
-  };
-};
-const signUpFailure = (error : User_SIGN_UP_FAILURE) => {
-  return {
-    type: SIGN_UP_FAILURE,
-    payload: error,
   };
 };
 
@@ -60,39 +87,34 @@ const signInRequest = () => {
     type: SIGN_IN_REQUEST,
   };
 };
-const signInSuccess = (token : string) => {
+const signInSuccess = (token : string, email: string) => {
   return {
     type: SIGN_IN_SUCCESS,
     payload: {
       token,
+      email
     },
-  };
-};
-const signInFailure = (error: User_SIGN_IN_FAILURE) => {
-  return {
-    type: SIGN_IN_FAILURE,
-    payload: error,
   };
 };
 
 export const signIn = (payload: User_SIGN_IN_REQUEST, history : any) => {
   return async function (dispatch : any) {
-    dispatch(signInRequest);
+    const res = await dispatch(signInRequest);
     try{
       const response = await signInService(payload);
       const data  = response.data;
       if (data.success){
         const token  = data.token;
+        const email = data.email;
         localStorage.setItem("USER-TOKEN", token);
-        dispatch(signInSuccess(token));
+        localStorage.setItem("USER-EMAIL", email);
+        const res = await dispatch(signInSuccess(token,email));
         history.push("/");
       }else{
-        //dispatch(signInFailure(data.error));
         return data.error;
       }
     }
     catch(error) {
-      //dispatch(signInFailure(error.toString()));
       return error.toString();
     }
   };
@@ -119,13 +141,13 @@ export const signOutFailure = function () {
 
 export const signOut = function (history : any) {
   return async function (dispatch : any) {
-    dispatch(signOutRequest());
+    const res = await dispatch(signOutRequest());
     const response = await signOutService();
     history.push("/");
     if (localStorage.getItem("USER_TOKEN")) {
-      dispatch(signOutFailure());
+      const res = await dispatch(signOutFailure());
     } else {
-      dispatch(signOutSuccess());
+      const res = await dispatch(signOutSuccess());
     }
   };
 };

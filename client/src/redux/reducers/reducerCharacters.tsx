@@ -29,7 +29,6 @@ const charactersReducer = (state = initialState, action) =>{
                 pages: action.pages
             }
         case UPDATE_CURRENT_PAGE:
-            
              return {
                 ...state,
                 pending: false,

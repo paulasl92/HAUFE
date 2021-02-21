@@ -4,6 +4,7 @@ import NavBar from "./component/Navbar";
 import SignIn from "./pages/Signin";
 import SignUp from "./pages/Signup";
 import HomeUser from "./pages/HomeUser";
+import Favs from "./pages/Favs";
 import { UserRoute } from "./component/privateRoute";
 import NotFoundPage from "./component/NotFoundPage";
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/signin" exact component={SignIn} />
         <UserRoute path="/" exact component={HomeUser}/>
+        <UserRoute path="/favs" exact component={Favs}/>
         <Route component={NotFoundPage} />
       </Switch>
     </Router>

@@ -26,6 +26,10 @@ const initState = {
     : null,
     loading: false,
     isAuthenticated: false,
+    email: localStorage.getItem("USER-EMAIL")
+    ? localStorage.getItem("USER-EMAIL")
+    : null,
+    favs: []
   },
   charactersReducer : {
     pending: false,

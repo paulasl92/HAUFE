@@ -2,8 +2,12 @@ import  { useState } from "react";
 import CharacterModal from "../modals/CharacterModal"
 import CharactersDetails from "./CharacterDetails";
 import '../util/styles/characterDetails.scss';
+import { updateUserFavsAction } from "../redux/actions/user-action";
+import { useDispatch } from "react-redux";
+
 const CharactersList = ( {characters : characters}) => {
   const [show, setShow] = useState(0);
+  const dispatch = useDispatch();
 
   const gridFrames = () => {
     const { innerWidth: width } = window;
@@ -12,6 +16,15 @@ const CharactersList = ( {characters : characters}) => {
 
   const handleModalOn = (id : number) => {
     setShow(id);
+  };
+
+  const addToFavs = async (id : number) => {
+    var ids:number[] = [id];
+    const res = await dispatch(updateUserFavsAction(ids));
+  };
+
+  const removeToFavs = (id : number) => {
+
   };
 
   const handleModalOff = () => {
@@ -42,6 +55,11 @@ const CharactersList = ( {characters : characters}) => {
             </CharacterModal>
             <CharactersDetails {...c} />
             <button type="button" className="btn__general btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
+
+            <button type="button" className="btn__general btnModal" onClick={() =>addToFavs(c.id)}>Add to Favs</button>
+
+            <button type="button" className="btn__general btnModal" onClick={() =>removeToFavs(c.id)}>Remove to Favs</button>
+
           </div>
         })}
       </div>

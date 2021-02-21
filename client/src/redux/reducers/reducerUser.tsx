@@ -9,7 +9,9 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_OUT_FAILURE,
   SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS
+  SIGN_OUT_SUCCESS,
+  UPDATE_USER_FAVS,
+  UPDATE_USER_FAVS_REQUEST
 } from "../action-types";
 
 export const isValidToken = (token) => {
@@ -25,6 +27,10 @@ const initState = {
     : null,
   loading: false,
   isAuthenticated: false,
+  email: localStorage.getItem("USER-EMAIL")
+  ? localStorage.getItem("USER-EMAIL")
+  : null,
+  favs: []
 };
 
 const authenticationReducer = function (state = initState, action) {
@@ -51,7 +57,9 @@ const authenticationReducer = function (state = initState, action) {
       isAuthenticated: false,
       loading: false,
       currentUser: null,
-      token: "" 
+      token: "" ,
+      email:"",
+      favs: []
     };
     case SIGN_IN_SUCCESS:
       return {
@@ -60,15 +68,28 @@ const authenticationReducer = function (state = initState, action) {
         token: action.payload.token,
         currentUser: action.payload.user,
         isAuthenticated: true,
+        email: action.payload.email
       };
     case SIGN_OUT_SUCCESS:
-      localStorage.removeItem("USER-TOKEN");
       return {
         ...state,
         isAuthenticated: false,
         loading: false,
         currentUser: null,
         token: "",
+        email: "",
+        favs: []
+      };
+    case UPDATE_USER_FAVS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case UPDATE_USER_FAVS:
+      return{
+        ...state,
+        favs: action.payload.favs,
+        loading: false
       };
     default:
       return { ...state };
@@ -76,3 +97,7 @@ const authenticationReducer = function (state = initState, action) {
 };
 
 export default authenticationReducer;
+
+export const getPagesCount = (state) =>{
+  return state.charactersReducer.pages;
+}
