@@ -101,3 +101,7 @@ export default authenticationReducer;
 export const getUserFav = (state) =>{
   return state.authentication.favs;
 }
+
+export const getLoading  = (state) =>{
+  return state.authentication.loading;
+}

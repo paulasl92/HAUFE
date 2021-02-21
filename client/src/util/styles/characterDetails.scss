@@ -21,6 +21,9 @@
         color: darkgray;
         display: block;
     }
+    h2{
+        min-height: 55px;
+    }
 }
 
 .characterContainer{
@@ -32,17 +35,34 @@
     background-color: gray;
 }
 
-.btnAdd{
-    background-color: green;
-    font-weight: bold;
-}
-
-.btnRemove{
-    background-color: red;
-    font-weight: bold;
+.characterButtons{
+    padding: 10px;
 }
 
 .favButtons{
-    display: initial;
-    padding-left: 10px;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 5px;
+
+    &.favButtons__btnAdd{
+        background-color: green;
+    }
+    &.favButtons__btnRemove{
+        background-color: red;
+    }   
+}
+.favoriteList{
+    text-align: center;
+}
+
+.buttonList{
+    display: inline;
+}
+
+.listContainer{
+    padding: 10px;
+}
+
+.imageList{
+    img {width: 225px};
 }

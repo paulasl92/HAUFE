@@ -2,7 +2,7 @@ import { User_SIGN_UP_REQUEST, User_SIGN_UP_SUCCESS,
    User_SIGN_IN_REQUEST} from '../../models/user';
 
 import {signUpService, signInService, signOutService, getUSerFavs} from "../../services/user-service";
-import { initUserFavsAction } from "./fav-action"
+
 import {
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,

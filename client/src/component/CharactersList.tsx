@@ -75,9 +75,9 @@ const CharactersList = ( {characters : characters}) => {
               {modalInformation(c)}
             </CharacterModal>
             <CharactersDetails {...c} />
-            <button type="button" className="btn__general btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
-            <div className="favButtons">
-            {isInFavs(c.id) ? <button type="button" className="btn__general btnRemove" onClick={() =>removeToFavs(c.id)}>Remove to Favs</button> : <button type="button" className="btn__general btnAdd" onClick={() =>addToFavs(c.id)}>Add to Favs</button>}
+            <div className="characterButtons">
+              <button type="button" className="btn__general btnModal" onClick={() =>handleModalOn(c.id)}>More Details</button>
+              {isInFavs(c.id) ? <button type="button" className="btn__general favButtons favButtons__btnRemove" onClick={() =>removeToFavs(c.id)}>Remove to Favs</button> : <button type="button" className="btn__general favButtons favButtons__btnAdd" onClick={() =>addToFavs(c.id)}>Add to Favs</button>}
             </div>
 
           </div>

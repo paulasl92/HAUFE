@@ -1,6 +1,6 @@
 import {getRequest} from "./axios";
 import {fetchCharactersError, fetchCharactersPending, fetchCharactersSuccess, updateCurrentPage } from '../redux/actions/characters-action';
-import {initUserFavsAction} from '../redux/actions/fav-action'
+import {initUserFavsAction} from '../redux/actions/fav-action';
 function fetchCharacters( currentPage) {
     return async dispatch => {
         await dispatch(updateCurrentPage(currentPage));
@@ -23,5 +23,17 @@ export const loadFavsAction =() =>{
         await dispatch(initUserFavsAction(email));
     }
 }
+
+export const getFavCharacters = async (ids)  => {
+        try{
+            const joinIds = ids.join();
+            const res = await getRequest(`/rickAndMorty/characterById/${joinIds}`);
+            return res.data;
+        }
+        catch (error){
+            return error;
+        }
+}
+
 
 export default fetchCharacters;

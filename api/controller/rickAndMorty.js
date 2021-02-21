@@ -4,6 +4,7 @@ var RandMServices = require('../services/axios.js')
 
 /**
  * You can access the list of characters by using the /character endpoint.
+ * You can get multiple characters by adding an array of ids as parameter: /character/[1,2,3] or /character/1,2,3
  */
 const getCharacterById = async (req, res) => {
   try {
@@ -39,6 +40,5 @@ const getCharacters = async (req, res) => {
       });
   }
 };
-
 
 module.exports = { getCharacterById, getCharacters };
