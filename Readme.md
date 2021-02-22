@@ -62,4 +62,5 @@ API_DATABASE_HOST = "mongodb://127.0.0.1/my_database";
 - Sass (short for syntactically awesome style sheets) is a preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets (CSS). 
 - React spinner: https://www.npmjs.com/package/react-loader-spinner
 - React Paginate: https://www.npmjs.com/package/react-paginate
+- polyfill: compatibility for ie
 
