@@ -15,15 +15,17 @@ cd HAUFE
 
 ## Install
 
-There are 2 folders and 1 file:
-api folder: the backend app (will run on port 9000)
-client: the frontend app (will run on port 3000)
-docker-compose.yml: docker config
+There are 2 folders and 2 files:
+
+-api folder: the backend app (will run on port 9000)
+-client: the frontend app (will run on port 3000)
+-docker-compose.yml: docker config
+-test.postman_collection.json: you can import the colection in postman to test the backend api
 
 Install and run the app using docker:
-1- Change the API_DATABASE_HOST variable in /app/.env to use mongo:
-	API_DATABASE_HOST = "mongodb://mongo/my_database";
-2- Run: 
+- 1- Change the API_DATABASE_HOST variable in /app/.env to use mongo:
+- API_DATABASE_HOST = "mongodb://mongo/my_database";
+- 2- Run: 
 ```
 sudo docker-compose up --build
 ```
