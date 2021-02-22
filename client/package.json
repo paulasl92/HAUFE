@@ -1,7 +1,9 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Paula Salamone Lacunza",
+  "license": "GPL",
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -13,6 +15,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "axios": "^0.21.1",
+    "es6-promise": "^4.2.8",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
