@@ -17,7 +17,8 @@ const ListFav = ( {listCharacters : listCharacters , favList: favList} ) => {
       };
 
       const gridFrames = () => {
-       return  (favList && favList.length <2 ) ? 1 : 2;
+        const { innerWidth: width } = window;
+       return  ((favList && favList.length) <2 || (width < 1000) ) ? 1 : 2;
       };
  
     return (

@@ -1,6 +1,7 @@
+import { polyfill } from 'es6-promise'; 
 import axios from "axios";
 import {apiBase} from "../services/api-const";
-
+polyfill();
 export const postRequestToken = (data, url) =>{
     return axios({
         baseURL: apiBase,  
