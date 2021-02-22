@@ -63,4 +63,10 @@ API_DATABASE_HOST = "mongodb://127.0.0.1/my_database";
 - React spinner: https://www.npmjs.com/package/react-loader-spinner
 - React Paginate: https://www.npmjs.com/package/react-paginate
 - polyfill: compatibility for ie
-
+- Jest — Jest is used by Facebook to test all JavaScript code including React applications.
+- Babel-jest — setup to use all ES6 features and React specific syntax.
+- Enzyme — Enzyme is a JavaScript testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
+- Enzyme-to-json — convert the Enzyme wrapper to format compatibility with Jest.
+- Nock — allows you to mock objects in your test files.
+- Redux-mock-store — used to mock our Redux store.
+- enzyme-adapter-react-16: Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output.

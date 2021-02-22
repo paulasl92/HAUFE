@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>Form - Shallow Render REACT COMPONENTS +++ render Form correctly, snapshot 1`] = `
+<div>
+  <div
+    className="errorContainer"
+  >
+    <div
+      className="error"
+    >
+      Please enter the email
+    </div>
+    <div
+      className="error"
+    >
+      Password needs to be at least six characters
+    </div>
+  </div>
+  <div
+    className="form"
+  >
+    <div
+      className="login login__form"
+    >
+      <div
+        className="container cont__login"
+      >
+        <input
+          className="email input"
+          name="email"
+          onChange={[Function]}
+          placeholder="email"
+          required={true}
+          type="text"
+          value=""
+        />
+        <input
+          className="password input"
+          onChange={[Function]}
+          placeholder="password"
+          required={true}
+          type="password"
+          value=""
+        />
+        <button
+          className="btn btn__login"
+          disabled={true}
+          onClick={[Function]}
+        >
+          Login
+        </button>
+      </div>
+    </div>
+    <div
+      className="cta"
+    >
+      <h2
+        className="cta__heading"
+      >
+        Don't have an account?
+      </h2>
+      <div>
+        <Link
+          to="/signup"
+        >
+          <span
+            className="btn__general btn cta__btn cta__btn--text"
+          >
+            Register!
+          </span>
+        </Link>
+      </div>
+    </div>
+  </div>
+</div>
+`;
